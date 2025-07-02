@@ -8,7 +8,7 @@ from config import (
 )
 
 class LanguageModel:
-    def __init__(self, model_name: str = "gpt-4-turbo", base_url: str = OPENAI_ENDPOINT):
+    def __init__(self, model_name: str = "gpt-4o", base_url: str = OPENAI_ENDPOINT):
         if not OPENAI_KEY:
             raise ValueError("OpenAI API key is missing in configuration")
             
@@ -18,7 +18,6 @@ class LanguageModel:
             timeout=30.0
         )
         self.model_name = model_name
-        # Removed validation to prevent errors - we'll validate during first generation instead
 
     def generate(self, messages: list, max_tokens: int = 2048) -> str:
         """Generate completion with simple error handling"""
@@ -39,7 +38,6 @@ _model = None
 def get_model() -> LanguageModel:
     global _model
     if _model is None:
-        # Use actual model name from config or default
         model_id = CUSTOM_MODEL if CUSTOM_MODEL and CUSTOM_MODEL != "CUSTOM_MODEL=gpt-4-turbo" else "gpt-4-turbo"
         _model = LanguageModel(model_name=model_id)
     return _model

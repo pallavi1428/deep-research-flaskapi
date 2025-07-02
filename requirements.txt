@@ -2,3 +2,9 @@ flask
 python-dotenv
 fpdf2
 aiohttp
+uvicorn[standard]>=0.29.0
+openai 
+pydantic 
+httpx 
+tiktoken
+fpdf
